@@ -1,4 +1,4 @@
 import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionsContext";
 
-export const useTransactions = ()=> {return useContext(TransactionContext)};
+export const useTransactions = ()=> useContext(TransactionContext);

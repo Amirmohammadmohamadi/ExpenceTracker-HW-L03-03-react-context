@@ -27,7 +27,7 @@ const Dashbord = () => {
       </div>
       <div className={styles.chartReport}>My Charts</div>
       <div className={styles.transactionsSummary}>
-        <TransactionsTable />
+        <TransactionsTable number={5}/>
       </div>
     </div>
   );

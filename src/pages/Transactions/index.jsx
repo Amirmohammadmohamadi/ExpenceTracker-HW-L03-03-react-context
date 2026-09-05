@@ -9,6 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useTransactions } from "../../hooks/useTransactions";
+import { ADD } from "../../constants/variables";
 
 const addTransactionSchema = Yup.object({
   category: Yup.string().required(),
@@ -27,7 +28,7 @@ const Transactions = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(addTransactionSchema) });
 
-  console.log("hii transaction page");
+  const { transactions, dispatch } = useTransactions();
 
   const handleClick = () => {
     setModalStatus(!modalStatus);
@@ -36,9 +37,18 @@ const Transactions = () => {
   const onSubmit = ({ category, cost, type }) => {
     setModalStatus(false);
     reset({ category: "", type: "", cost: "" });
+    console.log("transactions after submitting:", transactions);
+    dispatch({
+      type: ADD,
+      payload: {
+        id: transactions.length + 1,
+        category,
+        cost: Number(cost),
+        type,
+        date: new Date().toISOString().split("T")[0],
+      },
+    });
   };
-
-  console.log(modalStatus);
 
   return (
     <>
@@ -97,6 +107,19 @@ const Transactions = () => {
             onClick={handleClick}
             variant="addTransaction"
           />
+        </div>
+        <div className={styles.searchBox}>
+          <CustomInput
+            title="category"
+            type="select"
+            selectiontArray={categories}
+          />
+          <CustomInput
+            title="type"
+            type="select"
+            selectiontArray={[null, "income", "expence"]}
+          />
+          <CustomInput title="cost" placeholder="e.g: 1000-2000" />
         </div>
         <TransactionsTable />
       </div>

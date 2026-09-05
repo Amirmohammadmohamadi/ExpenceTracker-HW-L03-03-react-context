@@ -8,12 +8,19 @@ const CustomInput = ({
   value,
   onChange,
   error,
+  placeholder
 }) => {
   return (
     <div className={styles.inputWrapper}>
       <label htmlFor={title}>{`${title}:`}</label>
       {type === "input" ? (
-        <input type="text" id={title} value={value} onChange={onChange} />
+        <input
+          type="text"
+          id={title}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
       ) : (
         <select id={title} value={value} onChange={onChange}>
           {selectiontArray?.map((item) => (
@@ -23,7 +30,7 @@ const CustomInput = ({
           ))}
         </select>
       )}
-      <FormErrorMessage error={error}/>
+      <FormErrorMessage error={error} />
     </div>
   );
 };
