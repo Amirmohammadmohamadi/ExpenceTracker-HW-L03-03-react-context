@@ -1,0 +1,26 @@
+.TransactionsTableWrapper {
+        background-color: white;
+        border-radius: 8px;
+        padding: 3px;
+    
+        table {
+            width: 100%;
+    
+            thead {
+    
+                th {
+                    color: #0051ff;
+                    text-align: left;
+                    filter: drop-shadow(0 0 1px black);
+                }
+            }
+        }
+    
+    .incomeType {
+        color: green;
+    }
+    
+    .expenceType {
+        color: red;
+    }
+}

@@ -1,0 +1,19 @@
+.pageHeader {
+    background-color: white;
+    color: #0051ff;
+    box-shadow: 0 0 5px black;
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 0 20px 20px 0;
+    position: relative;
+
+    &::before {
+        content: "";
+        width: 5px;
+        position: absolute;
+        background-color: #0051ff;
+        top: 0;
+        bottom: 0;
+        left: 0;
+    }
+}

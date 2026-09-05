@@ -1,0 +1,54 @@
+.dashbordWrapper {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    overflow-y: scroll;
+}
+
+// .pageTitle {
+// }
+
+.totalReport {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.chartReport {
+    background-color: white;
+    min-height: 100px;
+}
+
+.transactionsSummary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 3px;
+
+    thead {
+
+        th {
+            text-align: left;
+            color: #0051ff;
+            filter: drop-shadow(0 0 1px black);
+        }
+    }
+        
+    h2 {
+        color: #0051ff;
+    }
+}
+
+.expenceType {
+    color: red;
+}
+
+.incomeType {
+    color: green;
+}

@@ -1,0 +1,94 @@
+.transactionWrapper {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.pageTitle {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.transactionsPresenter {
+    background-color: white;
+    border-radius: 8px;
+    padding: 3px;
+
+    table {
+        width: 100%;
+
+        thead {
+
+            th {
+                color: #0051ff;
+                text-align: left;
+                filter: drop-shadow(0 0 1px black);
+            }
+        }
+    }
+}
+
+.incomeType {
+    color: green;
+}
+
+.expenceType {
+    color: red;
+}
+
+.modalContainer {
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    position: absolute;
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .addForm {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 400px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 5px black;
+        padding: 10px;
+        gap: 50px;
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+
+        h2 {
+            color: #0051ff;
+            filter: drop-shadow(0 0 2px black);
+        }
+
+        label {
+            color: #0051ff;
+        }
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            input,
+            select {
+                outline: none;
+                padding: 6px;
+            }
+        }
+    }
+}
+
+

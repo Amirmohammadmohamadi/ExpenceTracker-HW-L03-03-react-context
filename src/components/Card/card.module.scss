@@ -1,0 +1,46 @@
+.cardWrapper {
+    background-color: white;
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    padding: 20px 5px;
+    transition: scale 200ms linear;
+
+    &:hover {
+        scale: 0.95;
+    }
+}
+
+.title {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wallet {
+    color: black;
+}
+
+.incomes {
+    color: green;
+}
+
+.expences {
+    color: red;
+}
+
+.cost {
+    position: relative;
+    right: 20px;
+    font-size: 1.2em;
+}
+
+.symbol {
+    box-shadow: inset 0 0 5px black;
+    padding: 5px;
+    border-radius: 30%;
+}

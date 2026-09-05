@@ -1,0 +1,47 @@
+.headerWrapper {
+    background-color: white;
+    min-height: 3em;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    padding-inline: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #555555;
+
+    .navLink {
+        color: black;
+        text-decoration: none;
+    }
+    
+    .isActive {
+        color: blue;
+        text-decoration: none;
+        filter: drop-shadow(0 0 5px black);
+    }
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
+    overflow: hidden;
+
+    span {
+        font-size: 1.2em;
+    }
+}
+
+.loginSection {
+    display: flex;
+    align-items: center;
+    justify-self: right;
+    cursor: pointer;
+
+    &:hover {
+        color: blue;
+    }
+}
+

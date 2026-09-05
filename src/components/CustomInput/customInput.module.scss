@@ -1,0 +1,18 @@
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        color: blue;
+    }
+
+    input {
+        outline: none;
+        padding: 6px;
+    }
+
+    select {
+        outline: none;
+        padding: 6px;
+    }
+}
