@@ -10,7 +10,7 @@ const transactioReducer = (state = [], action = { type: "", payload: "" }) => {
   }
   if (action.type === DELETE) {
     const filterd = state.filter((item) => item.id !== action.payload);
-    localStorage.setItem("transactions",JSON.stringify(filterd));
+    localStorage.setItem("transactions", JSON.stringify(filterd));
     return filterd;
   }
 };
@@ -27,8 +27,45 @@ const TransactionContextProvider = ({ children }) => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
+  const totalIncome = () => {
+    return transactions.reduce((acc, item) => {
+      if (item.type === "income") {
+        acc += item.cost;
+      }
+      return acc;
+    }, 0);
+  };
+
+  const totalExpense = () => {
+    return transactions.reduce((acc, item) => {
+      if (item.type === "expense") {
+        acc += item.cost;
+      }
+      return acc;
+    }, 0);
+  };
+
+  // const expensesBaseCatgory = ()=> {
+  //   transactions.filter(item => item.type === "expense")
+  //   .reduce((acc,currItem)=> {
+  //     for(const item of acc) {
+  //       if(item.cat === currItem.category){
+  //         return item.cost += currItem.cost;
+  //       } else {
+  //         return [...acc,{cat:currItem.category,cost:currItem.cost,color:"white"}];
+  //       }
+  //     }
+  //   },[])
+  // };
+
+  // console.log("expensesBaseCatgory:",expensesBaseCatgory());
+
+  const total = totalIncome() - totalExpense();
+
   return (
-    <TransactionContext.Provider value={{ transactions, dispatch }}>
+    <TransactionContext.Provider
+      value={{ transactions, dispatch, totalExpense, totalIncome, total }}
+    >
       {children}
     </TransactionContext.Provider>
   );

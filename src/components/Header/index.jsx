@@ -9,7 +9,7 @@ const Header = () => {
     <div className={styles.headerWrapper}>
       <div className={styles.logoContainer}>
         <SiChartdotjs size={30} color="blue" />
-        <span>Expence Tracker</span>
+        <span>Expense Tracker</span>
       </div>
       <NavBar />
       <NavLink
