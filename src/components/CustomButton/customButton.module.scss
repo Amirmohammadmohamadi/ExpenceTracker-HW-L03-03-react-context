@@ -25,7 +25,20 @@
     @extend .button;
     background-color: #0051ff;
     color: white;
-    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.back {
+    @extend .button;
+    background-color: black;
+    color: white;
     padding: 10px;
     border-radius: 6px;
     cursor: pointer;

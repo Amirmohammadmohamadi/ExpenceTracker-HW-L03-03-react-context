@@ -1,9 +1,10 @@
 import styles from "./transactionsTable.module.scss";
-import { mockTransactions } from "../../constants/mockTransactions";
 import { useTransactions } from "../../hooks/useTransactions";
+import { TbTrashXFilled } from "react-icons/tb";
+import { DELETE } from "../../constants/variables";
 
-const TransactionsTable = ({number}) => {
-  const { transactions } = useTransactions();
+const TransactionsTable = ({ len, inputArray = [], access = "user" }) => {
+  const { dispatch } = useTransactions();
 
   return (
     <div className={styles.TransactionsTableWrapper}>
@@ -15,14 +16,15 @@ const TransactionsTable = ({number}) => {
             <th>COST</th>
             <th>TYPE</th>
             <th>DATE</th>
+            {access === "admin" && <th></th>}
           </tr>
         </thead>
         <tbody>
-          {transactions?.slice(0,number).map((item, index) => {
+          {inputArray?.slice(0, len).map((item, index) => {
             const { id, category, cost, type, date } = item;
             return (
               <tr key={`${item}-${index}`}>
-                <td>{id}</td>
+                <td>{index + 1}</td>
                 <td>{category}</td>
                 <td>{cost.toFixed(2)}</td>
                 <td
@@ -33,6 +35,14 @@ const TransactionsTable = ({number}) => {
                   {type}
                 </td>
                 <td>{date}</td>
+                {access === "admin" && (
+                  <td
+                    className={styles.garbageIcon}
+                    onClick={() => dispatch({ type: DELETE, payload: item.id })}
+                  >
+                    <TbTrashXFilled color="#ff7979" />
+                  </td>
+                )}
               </tr>
             );
           })}

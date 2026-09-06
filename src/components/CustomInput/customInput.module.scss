@@ -16,3 +16,13 @@
         padding: 6px;
     }
 }
+
+.conditionlField {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        outline: none;
+        padding: 6px;
+    }
+}

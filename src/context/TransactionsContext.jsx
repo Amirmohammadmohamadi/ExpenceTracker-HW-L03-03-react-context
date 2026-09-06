@@ -9,7 +9,9 @@ const transactioReducer = (state = [], action = { type: "", payload: "" }) => {
     return [...state, action.payload];
   }
   if (action.type === DELETE) {
-    return state.filter((item) => item.id !== action.payload);
+    const filterd = state.filter((item) => item.id !== action.payload);
+    localStorage.setItem("transactions",JSON.stringify(filterd));
+    return filterd;
   }
 };
 

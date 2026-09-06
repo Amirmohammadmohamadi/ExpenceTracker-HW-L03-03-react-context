@@ -8,8 +8,21 @@ const CustomInput = ({
   value,
   onChange,
   error,
-  placeholder
+  placeholder,
+  conditionlField = false,
 }) => {
+  if (conditionlField) {
+    return (
+      <div className={styles.conditionlField}>
+        <input
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+        <FormErrorMessage error={error} />
+      </div>
+    );
+  }
   return (
     <div className={styles.inputWrapper}>
       <label htmlFor={title}>{`${title}:`}</label>

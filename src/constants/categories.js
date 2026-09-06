@@ -1,5 +1,4 @@
-export const categories = [
-    null,
+export const mockCategories = [
     "food",
     "transport",
     "shopping",

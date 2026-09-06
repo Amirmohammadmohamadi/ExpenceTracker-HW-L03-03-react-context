@@ -4,11 +4,14 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 import TransactionContextProvider from "./context/TransactionsContext";
+import CategoriesContextProvider from "./context/CategoriesContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <TransactionContextProvider>
-      <RouterProvider router={router} />
+      <CategoriesContextProvider>
+        <RouterProvider router={router} />
+      </CategoriesContextProvider>
     </TransactionContextProvider>
   </StrictMode>
 );

@@ -7,6 +7,7 @@ import PageHeader from "../../components/PageTitle";
 import { useTransactions } from "../../hooks/useTransactions";
 
 const Dashbord = () => {
+
   return (
     <div className={styles.dashbordWrapper}>
       <div className={styles.pageTitle}>
@@ -27,7 +28,7 @@ const Dashbord = () => {
       </div>
       <div className={styles.chartReport}>My Charts</div>
       <div className={styles.transactionsSummary}>
-        <TransactionsTable number={5}/>
+        <TransactionsTable len={5} inputArray={JSON.parse(localStorage.getItem("transactions"))}/>
       </div>
     </div>
   );
