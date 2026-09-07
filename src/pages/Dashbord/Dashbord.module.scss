@@ -7,9 +7,6 @@
     overflow-y: scroll;
 }
 
-// .pageTitle {
-// }
-
 .totalReport {
     display: flex;
     align-items: center;
@@ -19,7 +16,11 @@
 
 .chartReport {
     background-color: white;
-    min-height: 300px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 6px;
+    gap: 40px;
 }
 
 .transactionsSummary {

@@ -6,10 +6,12 @@ import TransactionsTable from "../../components/TransactionsTable";
 import PageHeader from "../../components/PageTitle";
 import { useTransactions } from "../../hooks/useTransactions";
 import MyPieChart from "../../components/MyPieChart";
+import MyLineChart from "../../components/MyLineChart";
+import Transactions from "../Transactions";
 
 const Dashbord = () => {
 
-  const {totalIncome,totalExpense,total} = useTransactions();
+  const {transactions,totalIncome,totalExpense,total} = useTransactions();
 
   return (
     <div className={styles.dashbordWrapper}>
@@ -25,7 +27,7 @@ const Dashbord = () => {
           cost={totalIncome().toFixed(2)}
         />
         <Card
-          title="Expences"
+          title="Expenses"
           symbol={<FaArrowTrendDown color="red" size="1.5em" />}
           variant="expences"
           cost={totalExpense().toFixed()}
@@ -33,9 +35,10 @@ const Dashbord = () => {
       </div>
       <div className={styles.chartReport}>
         <MyPieChart/>
+        <MyLineChart/>
       </div>
       <div className={styles.transactionsSummary}>
-        <TransactionsTable len={5} inputArray={JSON.parse(localStorage.getItem("transactions"))}/>
+        <TransactionsTable len={5} inputArray={transactions}/>
       </div>
     </div>
   );
