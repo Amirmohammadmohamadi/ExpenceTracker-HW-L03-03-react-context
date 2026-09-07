@@ -21,6 +21,23 @@
     padding: 20px;
     border-radius: 6px;
     gap: 40px;
+
+    .pieChartWrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lineChartWrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
 }
 
 .transactionsSummary {
@@ -52,4 +69,17 @@
 
 .incomeType {
     color: green;
+}
+
+@media (max-width:900px) {
+    .chartReport {
+        flex-direction: column;
+    }
+
+    .pieChartWrapper {
+        border-bottom: 1px solid;
+        width: 300px;
+        height: 300px;
+    }
+
 }

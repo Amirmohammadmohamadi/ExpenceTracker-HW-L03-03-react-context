@@ -25,11 +25,6 @@ const NavBar = () => {
             Transactions
           </NavLink>
         </li>
-        <li>
-          <NavLink to="" className={styles.navLink}>
-            Charts
-          </NavLink>
-        </li>
       </ul>
     </div>
   );

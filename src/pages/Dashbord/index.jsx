@@ -7,11 +7,9 @@ import PageHeader from "../../components/PageTitle";
 import { useTransactions } from "../../hooks/useTransactions";
 import MyPieChart from "../../components/MyPieChart";
 import MyLineChart from "../../components/MyLineChart";
-import Transactions from "../Transactions";
 
 const Dashbord = () => {
-
-  const {transactions,totalIncome,totalExpense,total} = useTransactions();
+  const { transactions, totalIncome, totalExpense, total } = useTransactions();
 
   return (
     <div className={styles.dashbordWrapper}>
@@ -19,7 +17,7 @@ const Dashbord = () => {
         <PageHeader title="Dashbord" />
       </div>
       <div className={styles.totalReport}>
-        <Card title="Wallet" symbol={<GiWallet size="1.5em" />} cost={total}/>
+        <Card title="Wallet" symbol={<GiWallet size="1.5em" />} cost={total} />
         <Card
           title="Incomes"
           symbol={<FaArrowTrendUp color="green" size="1.5em" />}
@@ -34,11 +32,15 @@ const Dashbord = () => {
         />
       </div>
       <div className={styles.chartReport}>
-        <MyPieChart/>
-        <MyLineChart/>
+        <div className={styles.pieChartWrapper}>
+          <MyPieChart />
+        </div>
+        <div className={styles.lineChartWrapper}>
+          <MyLineChart />
+        </div>
       </div>
       <div className={styles.transactionsSummary}>
-        <TransactionsTable len={5} inputArray={transactions}/>
+        <TransactionsTable len={5} inputArray={transactions} />
       </div>
     </div>
   );
