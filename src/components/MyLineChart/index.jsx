@@ -8,13 +8,15 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useTransactions } from "../../hooks/useTransactions";
 import { useMemo } from "react";
+import { compareBaseTime } from "../../functions/getCompareBaseTime";
+import { useSelector } from "react-redux";
 
 const MyLineChart = () => {
-  const { compareBaseTime } = useTransactions();
 
-  const data = useMemo(() => compareBaseTime(), [compareBaseTime]);
+  const transactions = useSelector(state => state.transactions);
+  const data = useMemo(() => compareBaseTime(transactions), [compareBaseTime]);
+  console.log("data in line chart:",data)
 
   const formatCurrency = (value) => {
     return value.toLocaleString() + "$";
@@ -44,7 +46,6 @@ const MyLineChart = () => {
             }}
           >
           </p>
-
           {payload.map((entry, index) => (
             <p
               key={index}
@@ -57,7 +58,7 @@ const MyLineChart = () => {
               }}
             >
               <span>{entry.name}:</span>
-              <span style={{ fontWeight: "bold" }}>
+              <span style={{ fontWeight: "bold"}}>
                 {formatCurrency(entry.value)}
               </span>
             </p>
@@ -165,7 +166,7 @@ const MyLineChart = () => {
             width={60}
           />
 
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<CustomTooltip/>} />
 
           <Legend
             verticalAlign="top"

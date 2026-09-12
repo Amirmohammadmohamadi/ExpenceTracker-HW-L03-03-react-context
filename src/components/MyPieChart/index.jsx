@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
-import { useTransactions } from "../../hooks/useTransactions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { transactionsActions } from "../../redux/sclice/transactionSlice";
+import { expensesBaseCategory } from "../../functions/getExpensesBaseCategory";
 
 const MyPieChart = () => {
-  const { expensesBaseCategory } = useTransactions();
-  const [data, setData] = useState(expensesBaseCategory());
+  const transactions = useSelector(state => state.transactions);
+  const data = expensesBaseCategory(transactions);
+  console.log("data:",data);
   const total = data.reduce((sum, item) => sum + item.cost, 0);
 
   const CustomTooltip = ({ active, payload }) => {
@@ -36,7 +39,7 @@ const MyPieChart = () => {
   };
 
   return (
-    <div style={{height:"100%" , aspectRatio:"1"}}>
+    <div style={{ height: "100%", aspectRatio: "1" }}>
       <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
         Expenses Distribution
       </h3>

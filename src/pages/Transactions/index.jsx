@@ -4,13 +4,14 @@ import PageTitle from "../../components/PageTitle";
 import CustomButton from "../../components/CustomButton";
 import { useEffect, useState } from "react";
 import CustomInput from "../../components/CustomInput";
-import { mockCategories } from "../../constants/categories";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useTransactions } from "../../hooks/useTransactions";
-import { ADD, CATEGORIES } from "../../constants/variables";
+import { ADD } from "../../constants/variables";
 import { useCategories } from "../../hooks/useCategories";
+import { useDispatch, useSelector } from "react-redux";
+import { transactionsActions } from "../../redux/sclice/transactionSlice";
 
 const addTransactionSchema = Yup.object({
   category: Yup.string().required(),
@@ -32,9 +33,10 @@ const Transactions = () => {
     typeFilter: "all",
     costFilter: "",
   });
-  const { transactions, dispatch } = useTransactions();
-  const {categories , categoriesDispatch} = useCategories();
-  console.log("categories:",categories);
+  const transactions = useSelector((state) => state.transactions);
+  const dispatch = useDispatch();
+  const { categories, categoriesDispatch } = useCategories();
+  console.log("categories:", categories);
   const [transactionsForFilter, setTransactionsForFilter] =
     useState(transactions);
   const {
@@ -91,22 +93,20 @@ const Transactions = () => {
   const onSubmit = ({ category, cost, type, customCategory }) => {
     setModalStatus(false);
     if (customCategory) {
-      categoriesDispatch({type:ADD,payload:customCategory});
-      
+      categoriesDispatch({ type: ADD, payload: customCategory });
     }
     console.log("values:", getValues());
     reset({ category: "", type: "", cost: "" });
     console.log("transactions after submitting:", transactions);
-    dispatch({
-      type: ADD,
-      payload: {
-        id: new Date().toISOString(),
-        category: customCategory || category,
-        cost: Number(cost),
-        type,
-        date: new Date().toISOString().split("T")[0],
-      },
-    });
+    dispatch(
+      transactionsActions.add({
+          id: new Date().toISOString(),
+          category: customCategory || category,
+          cost: Number(cost),
+          type,
+          date: new Date().toISOString().split("T")[0],
+      })
+    );
   };
 
   return (
@@ -125,11 +125,7 @@ const Transactions = () => {
                     {...setCategoryInputValue(field.value)}
                     title="category"
                     type="select"
-                    selectiontArray={[
-                      null,
-                      ...categories,
-                      "other...",
-                    ]}
+                    selectiontArray={[null, ...categories, "other..."]}
                     error={errors.category?.message}
                   />
                 )}
@@ -174,11 +170,20 @@ const Transactions = () => {
                 )}
               />
               <CustomButton title="ADD" variant="submit" />
-              <CustomButton title="BACK" variant="back" onClick={(e)=>{
-                e.preventDefault();
-                setModalStatus(false);
-                reset({category:"",type:"",cost:"",customCategory:""});
-              }}/>
+              <CustomButton
+                title="BACK"
+                variant="back"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModalStatus(false);
+                  reset({
+                    category: "",
+                    type: "",
+                    cost: "",
+                    customCategory: "",
+                  });
+                }}
+              />
             </form>
           </div>
         </div>
@@ -196,10 +201,7 @@ const Transactions = () => {
           <CustomInput
             title="category"
             type="select"
-            selectiontArray={[
-              "all",
-              ...categories,
-            ]}
+            selectiontArray={["all", ...categories]}
             onChange={(e) =>
               setFilterInputs({
                 ...filterInputs,
@@ -224,7 +226,7 @@ const Transactions = () => {
             }
           />
         </div>
-        <TransactionsTable inputArray={transactionsForFilter} access="admin"/>
+        <TransactionsTable inputArray={transactionsForFilter} access="admin" />
       </div>
     </>
   );

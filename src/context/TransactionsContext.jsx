@@ -1,7 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { mockTransactions } from "../constants/mockTransactions";
 import { ADD, DELETE } from "../constants/variables";
-import { boolean } from "yup";
 import { colorPallet } from "../constants/colorPallet";
 
 export const TransactionContext = createContext();

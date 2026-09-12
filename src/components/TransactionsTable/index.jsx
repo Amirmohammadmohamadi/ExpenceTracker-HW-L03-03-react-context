@@ -2,9 +2,11 @@ import styles from "./transactionsTable.module.scss";
 import { useTransactions } from "../../hooks/useTransactions";
 import { TbTrashXFilled } from "react-icons/tb";
 import { DELETE } from "../../constants/variables";
+import { useDispatch } from "react-redux";
+import { transactionsActions } from "../../redux/sclice/transactionSlice";
 
 const TransactionsTable = ({ len, inputArray = [], access = "user" }) => {
-  const { dispatch } = useTransactions();
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.TransactionsTableWrapper}>
@@ -26,7 +28,7 @@ const TransactionsTable = ({ len, inputArray = [], access = "user" }) => {
               <tr key={`${item}-${index}`}>
                 <td>{index + 1}</td>
                 <td>{category}</td>
-                <td>{cost.toFixed(2)}</td>
+                <td>{cost?.toFixed(2)}</td>
                 <td
                   className={
                     type === "income" ? styles.incomeType : styles.expenceType
@@ -38,7 +40,7 @@ const TransactionsTable = ({ len, inputArray = [], access = "user" }) => {
                 {access === "admin" && (
                   <td
                     className={styles.garbageIcon}
-                    onClick={() => dispatch({ type: DELETE, payload: item.id })}
+                    onClick={() => dispatch(transactionsActions.delete(item.id))}
                   >
                     <TbTrashXFilled color="#ff7979" />
                   </td>
