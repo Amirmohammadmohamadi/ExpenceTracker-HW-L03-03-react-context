@@ -1,0 +1,13 @@
+.entryDiv {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: white;
+    backdrop-filter: blur(10px);
+    z-index: 150;
+    position: absolute;
+}
